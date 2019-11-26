@@ -1,0 +1,78 @@
+body  {
+    background-image: url("images/background_letters.jpg");
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sint {
+    height: 800px;
+}
+
+.codeInput {
+    flex: 66.66%;
+    margin-top: 200px;
+    margin-left: 50px;
+}
+
+.label {
+    color: white;
+    font-size: 80px;
+    font-family: arial;
+    font-weight: bold;
+}
+
+.hiddenNameOfPerson {
+    opacity: 0;
+}
+
+.visibleNameOfPerson {
+    opacity: 100;
+    transition: opacity 1s linear;
+    background-color: brown;
+    color: white;
+    font-size: 80px;
+    font-family: arial;
+    font-weight: bold;
+    margin-top: 50px;
+    padding-left: 20px;
+    border-radius: 10px;
+    width: 950px;
+    height: 200px;
+    align-items: center;
+    display: flex;
+}
+
+.password {
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 600px;
+    height: 80px;
+    font-size: 48px;
+    text-transform: uppercase;
+}
+
+.buttonLink {
+    width: 200px;
+    height: 100px;
+    font-family: arial;
+    font-size: 36px;
+    padding: 21px;
+    margin-left: 5px;
+    border-radius: 10px;
+    vertical-align: text-bottom;
+    background-color: #D19030;
+    cursor: pointer;
+}
+
+    a:hover {
+       background-color: #9d620b;
+    }
+
+    a:active {
+        background-color: #9d620b;
+    }
