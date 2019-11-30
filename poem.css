@@ -1,0 +1,59 @@
+body  {
+    background-image: url("images/background_letters.jpg");
+    margin: 0px;
+    padding: 0px;
+}
+
+.poemContainer {
+    display: flex;
+    height: 100%;
+}
+
+.sint {
+    height: 800px;
+}
+
+.poem {
+    display: block;
+    opacity: 100;
+    transition: opacity 1s linear;
+    background-color: brown;
+    color: white;
+    font-size: 36px;
+    font-family: arial;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 1000px;
+    height: 650px;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.buttonContainer {
+    width: 100%;
+    text-align: center;
+}
+
+.buttonLink {
+    width: 200px;
+    height: 100px;
+    font-family: arial;
+    font-size: 36px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 10px;
+    vertical-align: text-bottom;
+    background-color: #D19030;
+    cursor: pointer;
+}
+
+    a:hover {
+       background-color: #9d620b;
+    }
+
+    a:active {
+        background-color: #9d620b;
+    }
