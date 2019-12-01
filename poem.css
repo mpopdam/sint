@@ -30,6 +30,10 @@ body  {
     overflow-y: scroll;
 }
 
+.poemPart {
+    margin-bottom: 25px;
+}
+
 .buttonContainer {
     width: 100%;
     text-align: center;
@@ -47,6 +51,7 @@ body  {
     border-radius: 10px;
     vertical-align: text-bottom;
     background-color: #D19030;
+    color: #000000;
     cursor: pointer;
 }
 
@@ -55,5 +60,9 @@ body  {
     }
 
     a:active {
+        background-color: #9d620b;
+    }
+
+    a: {
         background-color: #9d620b;
     }

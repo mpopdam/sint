@@ -1,18 +1,26 @@
 let clockContainer;
+let audioKnockOnDoor;
 
 function bindControls() {
     let countTo = new Date(clock.dataset.date).getTime();
     clockContainer = document.getElementById("clock");
     countdown(clockContainer, countTo);
+
+    audioKnockOnDoor = document.getElementById("bonken"); 
 }
+
 
 function getTimeLeft(to) {
     return ((to - new Date().getTime()) / 1000 | 0)
 }
 
 function countdownOver(interval, element) {
-    clearInterval(interval)
-    window.location.href = "poem.html";
+    clearInterval(interval);
+    audioKnockOnDoor.play();
+
+    setTimeout(function() {
+        window.location.href = "poem.html";
+    }, 7000);
 }
 
 function countdown(element, to) {
