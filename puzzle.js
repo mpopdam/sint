@@ -94,14 +94,6 @@ function replaceText( event ) {
         return;
     }
 
-    function handleEnterClick() {
-    if (input.value == 'A') { // SPECULAASPOP
-        nameOfPerson.style.display = "block";
-    } else {
-        nameOfPerson.style.display = "none";
-    }
-    }
-
     let replacementCharacter = getReplacementCharacter(character);
 
     event.preventDefault();
