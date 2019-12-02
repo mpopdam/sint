@@ -68,10 +68,7 @@ function countdown(element, to) {
     if (timeLeft >= 0) {
         interval = setInterval(()=>{
             let timeLeft = getTimeLeft(to)
-            if (timeLeft < 0) {
-                countdownOver(interval)
-                return
-            }
+
             const seconds = ((timeLeft % 60) + '').padStart(2, '0')
             const minutes = (((timeLeft / 60) | 0) % 60 + '').padStart(2, '0')
             const hours = ((timeLeft / 60 / 60 | 0) % 24 + '')
@@ -100,6 +97,11 @@ function countdown(element, to) {
             }
             else {
                 element.innerHTML = `${hours}:${minutes}:${seconds}`;
+            }
+
+            if (timeLeft <= 0) {
+                countdownOver(interval)
+                return
             }
         }, 1000)
     }
