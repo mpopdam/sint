@@ -1,20 +1,60 @@
 let clockContainer;
 let audioKnockOnDoor;
+let startContainer;
+let startButton;
+let startTimeInput;
+let interval;
 
 function bindControls() {
-    let countTo = new Date(clock.dataset.date).getTime();
+    startContainer = document.getElementById("startContainer");
     clockContainer = document.getElementById("clock");
-    countdown(clockContainer, countTo);
-
+    startTimeInput = document.getElementById("startTimeInput");
     audioKnockOnDoor = document.getElementById("bonken"); 
+
+    clockContainer.style.display = 'none';
+
+    startButton = document.getElementById("startTimerButton");
+    startButton.addEventListener("click", handleStartTimerClick);
+
+    const now = new Date();
+    const seconds = 10;
+    let start = new Date(now.getTime() + (seconds * 1000));
+    startTimeInput.value = getFormattedDateTime(start);
 }
 
+function getFormattedDateTime(t) {
+    const year = t.getFullYear();
+    const month = leadingZero(t.getMonth() + 1);
+    const day = leadingZero(t.getDate());
+    const hours = leadingZero(t.getHours());
+    const minutes = leadingZero(t.getMinutes());
+    const seconds = leadingZero(t.getSeconds());
+    
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+function leadingZero(number) {
+    return number.toString().padStart(2, "0");
+}
+
+function handleStartTimerClick() {
+    if (interval != null) {
+        clearInterval(interval);
+    }
+
+    let countTo = new Date(startTimeInput.value).getTime();
+
+    startContainer.style.display = 'none';
+    clockContainer.style.display = 'block';
+
+    countdown(clockContainer, countTo);
+}
 
 function getTimeLeft(to) {
     return ((to - new Date().getTime()) / 1000 | 0)
 }
 
-function countdownOver(interval, element) {
+function countdownOver(interval) {
     clearInterval(interval);
     audioKnockOnDoor.play();
 
@@ -29,7 +69,7 @@ function countdown(element, to) {
         interval = setInterval(()=>{
             let timeLeft = getTimeLeft(to)
             if (timeLeft < 0) {
-                countdownOver(interval, element)
+                countdownOver(interval)
                 return
             }
             const seconds = ((timeLeft % 60) + '').padStart(2, '0')
