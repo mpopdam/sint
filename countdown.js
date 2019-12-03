@@ -64,33 +64,20 @@ function countdownOver(interval) {
 }
 
 function countdown(element, to) {
-    let timeLeft = getTimeLeft(to)
+    let timeLeft = getTimeLeft(to);
     if (timeLeft >= 0) {
         interval = setInterval(()=>{
-            let timeLeft = getTimeLeft(to)
+            let timeLeft = getTimeLeft(to);
 
-            const seconds = ((timeLeft % 60) + '').padStart(2, '0')
-            const minutes = (((timeLeft / 60) | 0) % 60 + '').padStart(2, '0')
-            const hours = ((timeLeft / 60 / 60 | 0) % 24 + '')
-            const days = ((timeLeft / 60 / 60 / 24 | 0) + '')
-            let times = [
-                {
-                    number : days,
-                    text : `Day${days!=1?'s':''}`
-                },
-                {
-                    number : hours,
-                    text : `:`
-                },
-                {
-                    number : minutes,
-                    text : `:`
-                },
-                {
-                    number : seconds,
-                    text : `:`
-                },
-            ]
+            if (timeLeft < 0) {
+                countdownOver(interval);
+                return;
+            }
+
+            const seconds = ((timeLeft % 60) + '').padStart(2, '0');
+            const minutes = (((timeLeft / 60) | 0) % 60 + '').padStart(2, '0');
+            const hours = ((timeLeft / 60 / 60 | 0) % 24 + '');
+            const days = ((timeLeft / 60 / 60 / 24 | 0) + '');
 
             if (days > 0) {
                 element.innerHTML = `${days} days<br />${hours}:${minutes}:${seconds}`;
@@ -98,11 +85,6 @@ function countdown(element, to) {
             else {
                 element.innerHTML = `${hours}:${minutes}:${seconds}`;
             }
-
-            if (timeLeft <= 0) {
-                countdownOver(interval)
-                return
-            }
-        }, 1000)
+        }, 1000);
     }
 }
