@@ -54,13 +54,18 @@ function getTimeLeft(to) {
     return ((to - new Date().getTime()) / 1000 | 0)
 }
 
-function countdownOver(interval) {
-    clearInterval(interval);
-    audioKnockOnDoor.play();
+function formatClock(timeLeft) {
+    const seconds = ((timeLeft % 60) + '').padStart(2, '0');
+    const minutes = (((timeLeft / 60) | 0) % 60 + '').padStart(2, '0');
+    const hours = ((timeLeft / 60 / 60 | 0) % 24 + '');
+    const days = ((timeLeft / 60 / 60 / 24 | 0) + '');
 
-    setTimeout(function() {
-        window.location.href = "poem.html";
-    }, 7000);
+    if (days > 0) {
+        return `${days} days<br />${hours}:${minutes}:${seconds}`;
+    }
+    else {
+        return `${hours}:${minutes}:${seconds}`;
+    }
 }
 
 function countdown(element, to) {
@@ -69,22 +74,26 @@ function countdown(element, to) {
         interval = setInterval(()=>{
             let timeLeft = getTimeLeft(to);
 
-            const seconds = ((timeLeft % 60) + '').padStart(2, '0');
-            const minutes = (((timeLeft / 60) | 0) % 60 + '').padStart(2, '0');
-            const hours = ((timeLeft / 60 / 60 | 0) % 24 + '');
-            const days = ((timeLeft / 60 / 60 / 24 | 0) + '');
+            if (timeLeft < 0) {
+                clearInterval(interval);
 
-            if (days > 0) {
-                element.innerHTML = `${days} days<br />${hours}:${minutes}:${seconds}`;
-            }
-            else {
-                element.innerHTML = `${hours}:${minutes}:${seconds}`;
-            }
+                clockContainer.classList.add("hidden");
 
-            if (timeLeft <= 0) {
-                countdownOver(interval);
+                setTimeout(function() {
+                    audioKnockOnDoor.play();
+                }, 2000)
+
+                setTimeout(function() {
+                    window.location.href = "poem.html";
+                }, 7500);
+                
                 return;
             }
+
+            element.innerHTML = formatClock(timeLeft);
         }, 1000);
+    }
+    else {
+        element.innerHTML = 'Time has expired';
     }
 }
