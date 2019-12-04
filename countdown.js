@@ -81,11 +81,11 @@ function countdown(element, to) {
 
                 setTimeout(function() {
                     audioKnockOnDoor.play();
-                }, 2000)
+                }, 1800)
 
                 setTimeout(function() {
                     window.location.href = "poem.html";
-                }, 7500);
+                }, 8000);
                 
                 return;
             }
