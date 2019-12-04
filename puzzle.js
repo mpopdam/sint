@@ -2,6 +2,8 @@ let input;
 let nameOfPerson;
 let button;
 let winnerFound = false;
+const password = 'SPECULAASPOP'; // XBLUICDDXBMB
+const allNames = ["Coen", "Dorien", "Joeri", "Joyce", "Laura", "Leslie", "Lindsay", "Malou", "Marc", "Martin", "Marzia", "Sonja"];
 
 function bindControls() {
     input = document.getElementById("codeInput");
@@ -24,7 +26,6 @@ function handleKeyUp(event) {
 }
 
 function getRandomName() {
-    const allNames = ["Coen", "Dorien", "Joeri", "Joyce", "Laura", "Leslie", "Lindsay", "Malou", "Marc", "Martin", "Marzia", "Sonja"];
     const min=0;
     const max=11;
     var randomNumber = Math.floor(Math.random() * (+max - +min)) + +min; 
@@ -36,7 +37,7 @@ function handleEnterClick() {
         return;
     }
 
-    if (input.value == 'SPECULAASPOP') { // XBLUICDDXBMB
+    if (input.value == password) {
         const winner = getRandomName();
         nameOfPerson.className  = "visibleNameOfPerson";
         nameOfPerson.innerHTML = `${winner} mag beginnen<br/>Veel plezier!`;
@@ -89,12 +90,7 @@ function replaceText( event ) {
     // added to the input value.
     var offset = target.selectionStart;
 
-    let character = target.value[ offset - 1 ];
-    if (character == null) {
-        return;
-    }
-
-    let replacementCharacter = getReplacementCharacter(character);
+    let replacementCharacter = getReplacementCharacter(event.key);
 
     event.preventDefault();
 
